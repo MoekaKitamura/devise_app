@@ -1,0 +1,119 @@
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 33px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+h2{
+  margin: 30px;
+}
+
+p.login {
+  text-align: right;
+  margin: 10px 20px;
+}
+
+.index{
+  min-height: 2000px;
+}
+
+.tweet{
+  position: -webkit-sticky; /*for safari*/
+  position: sticky;
+  top: 0;
+}
+
+// --入力欄------------------------------
+form{
+  padding: 20px;
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+label {
+  display: block;
+}
+
+// ---エラー文、通知----------------------
+// #notice {
+//   color: green;
+// }
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px -7px 0;
+    background-color: #c00;
+    color: #fff;
+  }
+
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+/*ページトップに戻る---------------------------*/
+.backtop{/*ベース*/
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+.backtop a{/*中の矢印*/
+  display: block;
+  padding-top: 10px;
+  height: 40px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+}
+
+// ------index-記事一覧---------------------------
+
+article{/*ひとつの記事全体*/
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.morebt{
+  text-align: right;
+}
+.morebt a{
+  background: #000;
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 0.9em;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.morebt a:after{
+  content: "▶";
+  margin-left: 5px;
+}

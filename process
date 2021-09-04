@@ -1,0 +1,71 @@
+🧡devise実装
+
+リファレンスマニュアル
+https://github.com/plataformatec/devise
+
+$ rails new devise_app -d postgresql
+$ cd devise_app/
+$ rails g scaffold blog title:string content:text
+$ code .
+$ rails db:create
+$ rails db:migrate
+
+gem 'devise'
+gem 'rexml' #viewsファイル作成用
+gem 'devise-i18n' => ロケール設定
+gem 'rails_admin', '~> 2.0' 管理画面を作成
+gem 'cancancan' アクセス権限の設定
+gem 'letter_opener_web' (development)
+
+$ bundle install
+$ rails g devise:install =>Deviseを導入、ここで出てくるインストラクションに沿って設定
+$ rails g devise:views =>app/views/deviseの中にdeviseで使うviewを作成
+- sessions：ログイン画面
+- registrations：ユーザ登録画面とアカウント編集画面 (/users/sign_upアカウント登録, users/edit編集、削除画面)
+- confirmations：認証メール再送信するための画面 (new/確認メール再送)
+- passwords：パスワードを変更するための画面 (new/パスワード忘れましたか？, edit/メールからのみアクセスして変更)
+- unlocks：アカウント凍結画面
+- shared：Deviseの画面に遷移させるためのリンク
+
+$ rails g devise user =>deviseを使ってUserモデル
+コメントアウトはずす #Trackable, #Confirmable(メール認証) 追記execute("UPDATE users SET confirmed_at = NOW()")
+カラム追加できる ↓例
+t.string :name
+t.string :icon
+t.boolean :admin, default: false  (あとで追加してるアドミンここで追加できるよ！)
+
+$ rails db:migrate
+
+ルーティングは自動でされる・・・！
+
+---メール認証機能---------------
+app/models/user.rbに、:confirmable追記
+
+❓サインアップしてもメールに切り替わらない
+/letter_opener開いて、確認して、ログインでいいん？？
+sendgridやってみる
+
+---admin--------------------------
+usersテーブルにboolean型のadminカラムを追加
+$ rails generate migration add_admin_to_users admin:boolean
+default: falseにする。デフォルトは一般ユーザ
+
+if current_user.admin? でアドミン権限がある時の実装ができる！
+if current_user.try(:admin?) で、if current_user? && current_user.admin? と同じ。
+
+$ rails g rails_admin:install で管理画面作成(gemとセットで)
+https://github.com/sferik/rails_admin
+/adminのroutingができる！管理画面へ
+config/initializers/rails_admin.rb ができるから、使うgemの部分のコメントアウトはずす
+
+管理画面日本語化 => rails_admin.ja.yml作って、以下コピペ。
+https://gist.github.com/mshibuya/1662352
+
+$ rails g cancan:ability 管理者権限があるユーザのみ管理画面にアクセス
+https://github.com/CanCanCommunity/cancancan
+Abilityモデル models/ability.rb ができる
+    if user.try(:admin?)
+      can :access, :rails_admin
+      can :manage, :all
+    end
+  これを追加して、アクセス制限

@@ -1,0 +1,24 @@
+<% if current_user.try(:admin?) %>
+  <h2>ブログ記事一覧(管理ユーザー)</h2>
+<% else %>
+  <h2>ブログ記事一覧</h2>
+<% end %>
+
+<div class="index">
+  <div class="col-sm-8 container">
+    <% @blogs.each do |blog| %>     
+    <article>
+      <h3><%= blog.title %></h3>
+      <p><%= blog.content %></p>
+      <p class="morebt">
+        <%= link_to 'もっと見る', blog %> 
+        <%= link_to '編集する', edit_blog_path(blog) %> 
+        <%= link_to '削除する', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+    </article>
+    <% end %>
+  </div>
+  <div class="col-sm-4 container tweet">
+  <a class="twitter-timeline" data-width="500" data-height="600" data-theme="light" href="https://twitter.com/12a1070?ref_src=twsrc%5Etfw">Tweets by 12a1070</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</div>
