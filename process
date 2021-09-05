@@ -71,3 +71,9 @@ Abilityモデル models/ability.rb ができる
   これを追加して、アクセス制限
 
 --Send Grid---------------------------------
+config/initializers/devise.rbファイルにある
+# config.secret_key = (数字とアルファベットの羅列) これのコメントアウトはずす
+ターミナルでAPI key設定
+config/environments/production.rbに、コードを追記 テキストみる
+
+
