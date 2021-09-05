@@ -69,3 +69,5 @@ Abilityモデル models/ability.rb ができる
       can :manage, :all
     end
   これを追加して、アクセス制限
+
+--Send Grid---------------------------------

@@ -27,6 +27,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
+          <% if current_user.try(:admin?) %>
+            <li><%= link_to "管理画面", rails_admin_path %></li>
+          <% end %>
           <li><%= link_to "ブログ一覧", blogs_path %></li>
           <li><%= link_to "新規投稿", new_blog_path %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>

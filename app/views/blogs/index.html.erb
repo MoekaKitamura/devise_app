@@ -9,7 +9,7 @@
     <% @blogs.each do |blog| %>     
     <article>
       <h3><%= blog.title %></h3>
-      <p><%= blog.content %></p>
+      <p><%= blog.content.truncate(25) %></p>
       <p class="morebt">
         <%= link_to 'もっと見る', blog %> 
         <%= link_to '編集する', edit_blog_path(blog) %> 

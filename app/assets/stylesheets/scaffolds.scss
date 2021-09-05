@@ -117,3 +117,18 @@ article{/*ひとつの記事全体*/
   content: "▶";
   margin-left: 5px;
 }
+
+//---投稿内容-------------------------
+
+h4{
+  margin: 20px  0 20px 50px;
+}
+.content{
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  min-height: 1000px;
+}
+
+.content p{
+  padding: 50px;
+}
