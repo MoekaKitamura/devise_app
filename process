@@ -76,4 +76,6 @@ config/initializers/devise.rbファイルにある
 ターミナルでAPI key設定
 config/environments/production.rbに、コードを追記 テキストみる
 
+❓届かない。herokuでエラーになる！！
+
 
