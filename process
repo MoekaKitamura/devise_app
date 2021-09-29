@@ -20,6 +20,7 @@ gem 'letter_opener_web' (development)
 $ bundle install
 $ rails g devise:install =>Deviseを導入、ここで出てくるインストラクションに沿って設定
 $ rails g devise:views =>app/views/deviseの中にdeviseで使うviewを作成
+($ rails g devise:i18n:views 日本語化したい時はこっち、config/application.rbに、config.i18n.default_locale = :jaを追記）
 - sessions：ログイン画面
 - registrations：ユーザ登録画面とアカウント編集画面 (/users/sign_upアカウント登録, users/edit編集、削除画面)
 - confirmations：認証メール再送信するための画面 (new/確認メール再送)
