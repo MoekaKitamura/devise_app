@@ -1,9 +1,12 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[ show edit update destroy ]
   before_action :authenticate_user! #ブログ投稿や閲覧、編集、削除など）は、ログインしたユーザーのみに許可する
+  before_action :set_q, only: [:index, :search]
 
   def index
-    @blogs = Blog.order(created_at: :desc)
+    @q = Blog.ransack(params[:q])
+    @blogs = @q.result
+    # @blogs = Blog.order(created_at: :desc)
   end
 
   def show
@@ -38,7 +41,16 @@ class BlogsController < ApplicationController
     redirect_to blogs_url, notice: "ブログを削除しました。"
   end
 
+  def search
+    @results = @q.result #ransackメソッドで取得したデータをActiveRecord_Relationのオブジェクトに変換するメソッド。
+  end
+
   private
+  def set_q
+    @q = Blog.ransack(params[:q]) #検索フォームから送られるパラメーターを元に検索
+    #ransackメソッドはwhereメソッドみたいなイメージ
+  end
+
   def set_blog
     @blog = Blog.find(params[:id])
   end

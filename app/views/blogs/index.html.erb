@@ -6,6 +6,15 @@
 
 <div class="index">
   <div class="col-sm-8 container">
+  <%= search_form_for @q do |f| %>
+    <%= f.label :title_or_content, 'キーワードで検索' %>
+    <%= f.search_field :title_or_content_cont, class: "form-control", :placeholder => "あいまいなワードで検索"%> 
+    <%# カラム名_contメソッド---検索したワードであいまい検索 %>
+    <%# search_fieldにすると、右側にバツが表示 %>
+    <br>
+    <%= f.submit '検索', class: 'btn btn-default'%>
+  <% end %>
+  <%= sort_link(@q, :title, "タイトルで並び替え") %>
     <% @blogs.each do |blog| %>     
     <article>
       <h3><%= blog.title %></h3>
