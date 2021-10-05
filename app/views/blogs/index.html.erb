@@ -15,6 +15,7 @@
     <%= f.submit '検索', class: 'btn btn-default'%>
   <% end %>
   <%= sort_link(@q, :title, "タイトルで並び替え") %>
+  <div class="scroll-list jscroll">
     <% @blogs.each do |blog| %>     
     <article>
       <h3><%= blog.title %></h3>
@@ -26,8 +27,26 @@
       </p>
     </article>
     <% end %>
+    <%= paginate @blogs %>
+  </div>
+    
   </div>
   <div class="col-sm-4 container tweet">
   <a class="twitter-timeline" data-width="500" data-height="600" data-theme="light" href="https://twitter.com/12a1070?ref_src=twsrc%5Etfw">Tweets by 12a1070</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </div>
 </div>
+
+<script>
+  //kaminari + jscrollを使った無限スクロールの実装
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.scroll-list',// 無限に追加する要素は、どこに入れる？
+      nextSelector: 'span.next:last a'
+    });
+  });
+  //トップページへ
+  $(window).on('scroll', function() {
+   scrollHeight = $(document).height();
+   scrollPosition = $(window).height() + $(window).scrollTop();
+  });
+</script>

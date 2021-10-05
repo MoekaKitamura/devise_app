@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
 
   def index
     @q = Blog.ransack(params[:q])
-    @blogs = @q.result
+    @blogs = @q.result.page(params[:page]).per(4)
     # @blogs = Blog.order(created_at: :desc)
   end
 

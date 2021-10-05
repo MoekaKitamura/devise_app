@@ -18,11 +18,9 @@ gem 'devise-i18n'
 gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
 
-
-gem 'simple_form'
-gem 'summernote-rails'
-
 gem 'ransack'
+gem 'jquery-rails'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
