@@ -19,6 +19,11 @@ bundle exec ridgepole -c config/database.yml -E development -f db/Schemafile --a
 ; bundle exec ridgepole --config ./config/database.yml --file ./Schemafile --apply
 
 ; HerokuのDBに適用する
+
+[config/database.for.heroku.ridgepole.yml]を作って、中身書く
+  production:
+    url: <%= ENV['DATABASE_URL'] %>
+
 heroku run 'bundle exec ridgepole -c config/database.for.heroku.ridgepole.yml -E production -f db/Schemafile --apply' --app YOUR_HEROKU_APP_NAME
 今回は、
 heroku run 'bundle exec ridgepole -c config/database.for.heroku.ridgepole.yml -E production -f db/Schemafile --apply' --app devise-app-0905
