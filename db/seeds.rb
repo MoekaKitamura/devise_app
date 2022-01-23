@@ -22,6 +22,7 @@ end
 for n in 1..5 do
     Task.create!(
     title:"タスク#{n}",
-    content:"ドーナツを#{n}つ買う🍩"
+    content:"ドーナツを#{n}つ買う🍩",
+    status: [1,2,3].sample
   )
 end

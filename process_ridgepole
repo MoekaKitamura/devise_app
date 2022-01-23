@@ -43,3 +43,7 @@ db/schema.rb や db/migrate 以下の migration ファイルを削除してOK！
 一番下に追加したいカラムを追記
 
 dry run から、コマンドうつ
+
+❗️デプロイするたびに、コマンド忘れずに！！
+; 再起動する
+heroku restart
