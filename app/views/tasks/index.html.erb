@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1>
+
+<% n = 1  %>
+<% @tasks.each do |task| %>
+  <div class="box">
+    <label for=<%= "btn#{n}" %> class="label_accordion"><%= task.title %></label>
+    <input type="checkbox" id=<%= "btn#{n}" %> class="btn">
+
+    <div class="content_accordion">
+      <p><%= task.content %></p>
+      <p>
+        <%= link_to 'Show', task %> | 
+        <%= link_to 'Edit', edit_task_path(task) %> | 
+        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+    </div>
+  </div>
+  <% n += 1 %>
+<% end %>
+
+<hr>
+<%= link_to 'New Task', new_task_path %>

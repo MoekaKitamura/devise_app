@@ -1,0 +1,26 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// アコーディオン
+.btn {
+  cursor: pointer;
+  display: none;
+}
+.content_accordion {
+  display: none;
+}
+.label_accordion{
+  background: rgb(255, 212, 219);
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+@for $n from 1 through 100 {
+  #btn#{$n}:checked + .content_accordion {
+    display: block;
+    padding: 10px 20px;
+  }
+}
