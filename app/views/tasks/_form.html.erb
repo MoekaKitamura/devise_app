@@ -21,6 +21,11 @@
     <%= form.text_field :content %>
   </div>
 
+   <div class="field">
+    <%= form.label :status %>
+    <%= form.collection_radio_buttons :status, Task.statuses,:first, :first %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -18,3 +18,10 @@ User.create!(
     content:"わたしはドーナツを#{n}つ食べている🍩"
   )
 end
+
+for n in 1..5 do
+    Task.create!(
+    title:"タスク#{n}",
+    content:"ドーナツを#{n}つ買う🍩"
+  )
+end

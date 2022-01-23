@@ -9,7 +9,12 @@
     <input type="checkbox" id=<%= "btn#{n}" %> class="btn">
 
     <div class="content_accordion">
-      <p><%= task.content %></p>
+      <p>
+        <% if task.status == "重要！" %>⚠️<% end %>
+        <% if task.status == "できれば" %>⭕️<% end %>
+        <% if task.status == "あとで" %>❎<% end %>
+        <%= task.content %>
+      </p>
       <p>
         <%= link_to 'Show', task %> | 
         <%= link_to 'Edit', edit_task_path(task) %> | 

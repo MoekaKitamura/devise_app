@@ -24,3 +24,9 @@
     padding: 10px 20px;
   }
 }
+
+input[type="radio"]+label{
+  display: inline;
+  margin: 0.3em;
+  padding-right: 0.5em;
+}

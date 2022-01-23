@@ -16,14 +16,14 @@ bundle exec ridgepole -c config/database.yml -E development -f db/Schemafile --a
 
 ; LGTMならDBに適用する
 bundle exec ridgepole -c config/database.yml -E development -f db/Schemafile --apply
-; bundle exec ridgepole --config ./config/database.yml --file ./Schemafile --apply
 
 ; HerokuのDBに適用する
-
 [config/database.for.heroku.ridgepole.yml]を作って、中身書く
   production:
     url: <%= ENV['DATABASE_URL'] %>
 
+↓
+herokuにpushしたあと、
 heroku run 'bundle exec ridgepole -c config/database.for.heroku.ridgepole.yml -E production -f db/Schemafile --apply' --app YOUR_HEROKU_APP_NAME
 今回は、
 heroku run 'bundle exec ridgepole -c config/database.for.heroku.ridgepole.yml -E production -f db/Schemafile --apply' --app devise-app-0905
@@ -33,3 +33,13 @@ $ rails g model amazonFlatFile --skip-migration
 
 rails g scaffold Task title:string content:string --skip-migration
 
+ゴミ掃除
+db/schema.rb や db/migrate 以下の migration ファイルを削除してOK！
+
+-----------------------------------------------------
+カラム変更してみる
+
+/Schemafileを編集
+一番下に追加したいカラムを追記
+
+dry run から、コマンドうつ
