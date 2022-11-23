@@ -1,0 +1,52 @@
+🧡ridgepole実装
+
+https://github.com/ridgepole/ridgepole
+
+gem 'ridgepole'
+
+$ bindle install
+
+; database.yml の development情報を元にして db/Schemafile を作成する
+$ bundle exec ridgepole -c config/database.yml -E development --export -o db/Schemafile
+↓
+既存のschema.rbを元に、テーブル情報が自動で反映する！
+
+; 実際の適用の前に --dry-run にて確認
+bundle exec ridgepole -c config/database.yml -E development -f db/Schemafile --apply --dry-run
+
+; LGTMならDBに適用する
+bundle exec ridgepole -c config/database.yml -E development -f db/Schemafile --apply
+
+; HerokuのDBに適用する
+[config/database.for.heroku.ridgepole.yml]を作って、中身書く
+  production:
+    url: <%= ENV['DATABASE_URL'] %>
+
+↓
+herokuにpushしたあと、
+heroku run 'bundle exec ridgepole -c config/database.for.heroku.ridgepole.yml -E production -f db/Schemafile --apply' --app YOUR_HEROKU_APP_NAME
+今回は、
+heroku run 'bundle exec ridgepole -c config/database.for.heroku.ridgepole.yml -E production -f db/Schemafile --apply' --app devise-app-0905
+
+モデルとか作るときはマイグレーションスキップ！
+$ rails g model amazonFlatFile --skip-migration
+
+rails g scaffold Task title:string content:string --skip-migration
+
+ゴミ掃除
+db/schema.rb や db/migrate 以下の migration ファイルを削除してOK！
+
+とりあえず.gitignoreに書いてもOK
+ db/schema.rb
+
+-----------------------------------------------------
+カラム変更してみる
+
+/Schemafileを編集
+一番下に追加したいカラムを追記
+
+dry run から、コマンドうつ
+
+❗️デプロイするたびに、コマンド忘れずに！！
+; 再起動する
+heroku restart
