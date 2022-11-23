@@ -36,6 +36,9 @@ rails g scaffold Task title:string content:string --skip-migration
 ゴミ掃除
 db/schema.rb や db/migrate 以下の migration ファイルを削除してOK！
 
+とりあえず.gitignoreに書いてもOK
+ db/schema.rb
+
 -----------------------------------------------------
 カラム変更してみる
 
